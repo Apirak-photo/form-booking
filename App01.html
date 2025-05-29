@@ -1,7 +1,135 @@
-<form action="https://script.google.com/macros/s/AKfycbxECPHhk899q9qgvpRU95gEIWUQWljxr2If9LZ6kPQ6qhIE2q1xXw4YJjtdR9SnreY21g/exec" method="POST">
-  <input name="fullname" required>
-  <input name="phone" required>
-  <input type="date" name="date" required>
-  <input type="time" name="time" required>
-  <button type="submit">ส่ง</button>
-</form>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>จองคิวถ่ายภาพ</title>
+
+  <!-- โหลดฟอนต์ภาษาไทยจาก Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+
+  <style>
+    /* ตั้งค่าทั่วไปของ body ให้จัดกลางหน้า */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Kanit', sans-serif;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* กล่องหลักที่ห่อฟอร์มทั้งหมด */
+    .container {
+      width: 90%;
+      max-width: 400px;
+      padding: 32px 24px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    /* ส่วนของโลโก้กล้อง + ข้อความ */
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    /* ขนาดรูปไอคอนกล้อง */
+    .logo img {
+      width: 48px;
+    }
+
+    /* ข้อความ "จองคิว / ถ่ายภาพ" */
+    .logo-text {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: left;
+      line-height: 1.2;
+    }
+
+    /* ฟอร์มจัดแนวแนวตั้ง มีช่องห่างระหว่าง input */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ช่อง input ทั้งหมด */
+    input {
+      padding: 10px 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* แถวสำหรับช่องวันที่ + เวลา */
+    .row {
+      display: flex;
+      gap: 12px;
+    }
+
+    /* ทำให้ช่องวันที่และเวลาแบ่งครึ่ง */
+    .row input {
+      flex: 1;
+    }
+
+    /* ปุ่มส่งฟอร์ม */
+    button {
+      margin-top: 12px;
+      padding: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #2e4a85; /* สีกรมท่า */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* เปลี่ยนสีปุ่มเมื่อ hover */
+    button:hover {
+      background-color: #1f3b6b;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- โลโก้กล้อง + ข้อความหัวเรื่อง -->
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/2920/2920251.png" alt="camera icon">
+      <div class="logo-text">
+        จองคิว<br>ถ่ายภาพ
+      </div>
+    </div>
+
+    <!-- ฟอร์มสำหรับส่งข้อมูลไปยัง Google Apps Script -->
+    <form action="https://script.google.com/macros/s/AKfycbxECPHhk899q9qgvpRU95gEIWUQWljxr2If9LZ6kPQ6qhIE2q1xXw4YJjtdR9SnreY21g/exec" method="POST">
+      
+      <!-- ช่องกรอกชื่อ -->
+      <input type="text" name="fullname" placeholder="ชื่อ - นามสกุล" required>
+
+      <!-- ช่องกรอกเบอร์โทร -->
+      <input type="tel" name="phone" placeholder="เบอร์โทร ติดต่อ" required>
+
+      <!-- ช่องวันที่ + เวลา ในแถวเดียวกัน -->
+      <div class="row">
+        <input type="date" name="date" required>
+        <input type="time" name="time" required>
+      </div>
+
+      <!-- ปุ่มส่ง -->
+      <button type="submit">ส่ง</button>
+    </form>
+  </div>
+</body>
+</html>
