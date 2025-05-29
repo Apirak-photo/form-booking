@@ -60,15 +60,29 @@ input {
   box-sizing: border-box;
 }
 
-/* แถวสำหรับช่องวันที่ + เวลา */
+/* แถวที่วาง input date และ time เคียงข้างกัน */
 .row {
   display: flex;
   gap: 12px;
 }
 
-/* ทำให้ช่องวันที่และเวลาแบ่งครึ่ง */
+/* input ใน row ทั้งคู่ */
 .row input {
   flex: 1;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9; /* พื้นหลังนวลๆ */
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+  transition: border 0.2s ease;
+}
+
+/* เมื่อโฟกัส ให้ขอบเปลี่ยน */
+.row input:focus {
+  border: 1px solid #2e4a85;
+  outline: none;
+  background-color: #ffffff;
 }
 
 /* ปุ่มส่งฟอร์ม */
