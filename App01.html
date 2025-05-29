@@ -33,9 +33,17 @@
 
       <!-- ช่องวันที่ + เวลา ในแถวเดียวกัน -->
       <div class="row">
-        <input type="date" name="date" placeholder="วันที่" required>
-        <input type="time" name="time" placeholder="เวลา" required>
-      </div>
+  <div class="column">
+    <label for="date">วันที่</label>
+    <input type="date" id="date" name="date" required>
+  </div>
+
+  <div class="column">
+    <label for="time">เวลา</label>
+    <input type="time" id="time" name="time" required>
+  </div>
+</div>
+
 
       <!-- ปุ่มส่ง -->
       <button type="submit">ส่ง</button>
