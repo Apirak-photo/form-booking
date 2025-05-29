@@ -63,7 +63,7 @@ input {
 /* ใช้สำหรับจัดแนววันที่และเวลาให้มี label อยู่บน */
 .row {
   display: flex;
-  gap: 12px;
+  gap: 8px;
 }
 
 /* คอลัมน์ย่อยของ row */
@@ -77,7 +77,7 @@ input {
 .column label {
   font-size: 14px;
   margin-bottom: 6px;
-  color: #333;
+  color: #d1cece;
 }
 
 
