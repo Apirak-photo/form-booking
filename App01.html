@@ -1,0 +1,54 @@
+<form id="bookingForm">
+  <label>ชื่อ - นามสกุล
+    <input type="text" name="fullname" required>
+  </label>
+
+  <label>เบอร์โทร ติดต่อ
+    <input type="tel" name="phone" required>
+  </label>
+
+  <div class="row">
+    <label>วันที่
+      <input type="date" name="date" required>
+    </label>
+
+    <label>เวลา
+      <input type="time" name="time" required>
+    </label>
+  </div>
+
+  <button type="submit">ส่ง</button>
+</form>
+
+<script>
+document.getElementById("bookingForm").addEventListener("submit", function(e) {
+  e.preventDefault(); // หยุดฟอร์มไม่ให้โหลดหน้าใหม่
+
+  const data = {
+    fullname: e.target.fullname.value,
+    phone: e.target.phone.value,
+    date: e.target.date.value,
+    time: e.target.time.value
+  };
+
+  // URL จากขั้นตอน Deploy (เปลี่ยนตรงนี้!)
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyxc9lDIxuyxpYD4otGeLRE75ddDkKA7nUFnUb2J8z4TR_TtwhyL5jwHPTKRlIr9OTpFg/exec";
+
+  // ส่งข้อมูลด้วย fetch ไปยัง Google Apps Script
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(response => response.text())
+  .then(result => {
+    alert("✅ ส่งข้อมูลสำเร็จแล้ว");
+  })
+  .catch(error => {
+    alert("❌ มีข้อผิดพลาดในการส่งข้อมูล");
+    console.error(error);
+  });
+});
+</script>
