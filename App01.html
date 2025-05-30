@@ -1,53 +1,79 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>จองคิวถ่ายภาพ</title>
-
-  <!-- โหลดฟอนต์ภาษาไทยจาก Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
-
-  <!-- ลิงก์ไปยังไฟล์ CSS -->
   <link rel="stylesheet" href="App01.css">
 </head>
 
 <body>
   <div class="container">
 
-    <!-- โลโก้กล้อง + ข้อความหัวเรื่อง -->
+    <!-- โลโก้และหัวเรื่อง -->
     <div class="logo">
       <img src="https://cdn-icons-png.flaticon.com/512/2920/2920251.png" alt="camera icon">
-      <div class="logo-text">
-        จองคิว<br>ถ่ายภาพ
-      </div>
+      <div class="logo-text">จองคิว<br>ถ่ายภาพ</div>
     </div>
 
-    <!-- ฟอร์มสำหรับส่งข้อมูลไปยัง Google Apps Script -->
-    <form action="https://script.google.com/macros/s/AKfycbxECPHhk899q9qgvpRU95gEIWUQWljxr2If9LZ6kPQ6qhIE2q1xXw4YJjtdR9SnreY21g/exec" method="POST">
-      
-      <!-- ช่องกรอกชื่อ -->
+    <!-- ฟอร์มจอง -->
+    <form id="bookingForm">
       <input type="text" name="fullname" placeholder="ชื่อ - นามสกุล" required>
-
-      <!-- ช่องกรอกเบอร์โทร -->
       <input type="tel" name="phone" placeholder="เบอร์โทร ติดต่อ" required>
 
-      <!-- ช่องวันที่ + เวลา ในแถวเดียวกัน -->
+      <!-- วันที่และเวลา (มี label) -->
       <div class="row">
-  <div class="column">
-    <label for="date">วันที่</label>
-    <input type="date" id="date" name="date" required>
-  </div>
+        <div class="column">
+          <label for="date">วันที่</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+        <div class="column">
+          <label for="time">เวลา</label>
+          <input type="time" id="time" name="time" required>
+        </div>
+      </div>
 
-  <div class="column">
-    <label for="time">เวลา</label>
-    <input type="time" id="time" name="time" required>
-  </div>
-</div>
-
+      <!-- รายละเอียดเพิ่มเติม -->
+      <textarea name="details" placeholder="รายละเอียดเพิ่มเติม เช่น รีทัชสิว, ย้อมผมสีจม ฯลฯ" rows="3"></textarea>
 
       <!-- ปุ่มส่ง -->
       <button type="submit">ส่ง</button>
     </form>
+
+    <!-- ข้อความแจ้งเตือน -->
+    <div id="message" class="message"></div>
   </div>
+
+  <script>
+    // เมื่อกดปุ่มส่งฟอร์ม
+    document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+      e.preventDefault(); // ยกเลิกการส่งแบบเดิม
+
+      const form = e.target;
+      const data = new FormData(form);
+
+      const params = new URLSearchParams();
+      for (const [key, value] of data.entries()) {
+        params.append(key, value);
+      }
+
+      const response = await fetch("https://script.google.com/macros/s/AKfycbzHc2uDAup_KoX4xxgd-jBRgFRnqaqjnFSUDlEWHncQUyfnTGMxQpABTbJTrUyneGF7qA/exec", {
+        method: "POST",
+        body: params,
+      });
+
+      const result = await response.text();
+      const messageBox = document.getElementById('message');
+
+      if (result.includes("ซ้ำ")) {
+        messageBox.innerText = "❌ เวลานี้ถูกจองแล้ว กรุณาเลือกใหม่";
+        messageBox.style.color = "red";
+      } else {
+        messageBox.innerText = "✅ จองคิวสำเร็จ";
+        messageBox.style.color = "green";
+        form.reset(); // ล้างฟอร์ม
+      }
+    });
+  </script>
 </body>
 </html>
