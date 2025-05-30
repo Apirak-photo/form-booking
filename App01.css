@@ -1,27 +1,23 @@
-/* ตั้งค่าทั่วไปของ body ให้จัดกลางหน้า */
 body {
   margin: 0;
-  padding: 0;
   font-family: 'Kanit', sans-serif;
-  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background: #fff;
 }
 
-/* กล่องหลักที่ห่อฟอร์มทั้งหมด */
 .container {
   width: 90%;
-  max-width: 400px;
-  padding: 32px 24px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
+  padding: 32px;
   border-radius: 20px;
-  text-align: center;
   border: 1px solid #ddd;
+  box-shadow: 0 0 12px rgba(0,0,0,0.05);
+  text-align: center;
 }
 
-/* ส่วนของโลโก้กล้อง + ข้อความ */
 .logo {
   display: flex;
   justify-content: center;
@@ -30,71 +26,64 @@ body {
   margin-bottom: 24px;
 }
 
-/* ขนาดรูปไอคอนกล้อง */
 .logo img {
   width: 48px;
 }
 
-/* ข้อความ "จองคิว / ถ่ายภาพ" */
 .logo-text {
   font-size: 20px;
   font-weight: bold;
-  text-align: left;
   line-height: 1.2;
+  text-align: left;
 }
 
-/* ฟอร์มจัดแนวแนวตั้ง มีช่องห่างระหว่าง input */
 form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* ช่อง input ทั้งหมด */
-input {
-  padding: 10px 12px;
+input, textarea {
+  padding: 12px;
   font-size: 16px;
-  border: 1px solid #ccc;
   border-radius: 10px;
-  width: 100%;
-  box-sizing: border-box;
+  border: 1px solid #ccc;
+  resize: none;
 }
 
-/* ใช้สำหรับจัดแนววันที่และเวลาให้มี label อยู่บน */
 .row {
   display: flex;
-  gap: 8px;
+  gap: 12px;
 }
 
-/* คอลัมน์ย่อยของ row */
 .column {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-/* ปรับ label ให้อ่านง่าย */
 .column label {
   font-size: 14px;
-  margin-bottom: 6px;
-  color: #d1cece;
+  margin-bottom: 4px;
+  text-align: left;
+  color: #555;
 }
 
-
-/* ปุ่มส่งฟอร์ม */
 button {
-  margin-top: 12px;
   padding: 12px;
   font-size: 18px;
-  font-weight: bold;
-  background-color: #2e4a85; /* สีกรมท่า */
+  background-color: #2e4a85;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
-/* เปลี่ยนสีปุ่มเมื่อ hover */
 button:hover {
   background-color: #1f3b6b;
+}
+
+.message {
+  margin-top: 12px;
+  font-weight: bold;
 }
